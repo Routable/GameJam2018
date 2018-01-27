@@ -9,10 +9,29 @@ public class WinCondition : MonoBehaviour {
     public bool CheckWin(List<Card> cards)
     {
         bool win = false;
-        int wood = cards.Where(x => x.cardType == CardType.Wood).Count();
-        int water = cards.Where(x => x.cardType == CardType.Water).Count();
-        int rock = cards.Where(x => x.cardType == CardType.Rock).Count();
+        var cardTypes = CardType.GetValues(typeof(CardType)).Cast<CardType>();
 
-        if (HasMoreOfTypeThanNeeded())
+        foreach (CardType ct in cardTypes)
+        {
+            win = CheckEnoughCardsOfType(ct, cards);
+            if (!win)
+            {
+                return false;
+            }
+        }
+        if (win)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool CheckEnoughCardsOfType(CardType cardType, List<Card> cards)
+    {
+        if (cards.Where(x => x.cardType == cardType).Count() >= neededCards.Where(x => x.cardType == cardType).Count())
+        {
+            return true;
+        }
+        return false;
     }
 }
