@@ -253,6 +253,9 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -283,6 +286,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Card.cs" />
+    <Compile Include="Assets\GetEnum.cs" />
     <Compile Include="Assets\Player.cs" />
     <Compile Include="Assets\TrapCard.cs" />
     <Compile Include="Assets\WinCondition.cs" />
