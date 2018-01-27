@@ -292,9 +292,25 @@
     <Compile Include="Assets\Card.cs" />
     <Compile Include="Assets\DiscardPile.cs" />
     <Compile Include="Assets\GetEnum.cs" />
-    <Compile Include="Assets\Player Asset\Menu\MainMenu.cs" />
-    <Compile Include="Assets\Player Asset\Menu\Manager.cs" />
+    <Compile Include="Assets\Lobby\Scripts\DraggablePanel.cs" />
+    <Compile Include="Assets\Lobby\Scripts\EventSystemChecker.cs" />
+    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyCountdownPanel.cs" />
+    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyHook.cs" />
+    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyInfoPanel.cs" />
+    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyMainMenu.cs" />
+    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyManager.cs" />
+    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyPlayer.cs" />
+    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyPlayerList.cs" />
+    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerEntry.cs" />
+    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerList.cs" />
+    <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyTopPanel.cs" />
+    <Compile Include="Assets\Menu\MainMenu.cs" />
     <Compile Include="Assets\Player.cs" />
+    <Compile Include="Assets\SampleScenes\Scripts\NetworkAsteroid.cs" />
+    <Compile Include="Assets\SampleScenes\Scripts\NetworkGameManager.cs" />
+    <Compile Include="Assets\SampleScenes\Scripts\NetworkLobbyHook.cs" />
+    <Compile Include="Assets\SampleScenes\Scripts\NetworkSpaceship.cs" />
+    <Compile Include="Assets\SampleScenes\Scripts\NetworkSpaceshipBullet.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -331,6 +347,9 @@
     <Compile Include="Assets\WinCondition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Fonts\OpenSans\License!.txt" />
+    <None Include="Assets\Lobby\Documentation.txt" />
+    <None Include="Assets\Lobby\Instruction.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />
