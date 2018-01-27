@@ -36,11 +36,15 @@ public class Player : MonoBehaviour {
         //GiveCard();
     }
 
-    private void DrawCard()
+    public void DrawCard(int amount = 1)
     {
-        Card card = new Card();
-        //Card animations and stuff here
-        playerCards.Add(card);
+        while (amount > 0)
+        {
+            Card card = new Card();
+            //Card animations and stuff here
+            playerCards.Add(card);
+            amount--;
+        }
     }
 
     public void DiscardCard(GetEnum g)
@@ -60,8 +64,20 @@ public class Player : MonoBehaviour {
         return false;
     }
 
-    private void RemoveCards(int amount, CardType cardType = CardType.None)
+    public void RemoveCards(int amount, CardType cardType = CardType.None)
     {
-        //remove cards here
+        while (amount > 0)
+        {
+            //random
+            if (cardType == CardType.None)
+            {
+                playerCards.RemoveAt(Random.Range(0, playerCards.Count));
+            }
+            else
+            {
+
+            }
+            amount--;
+        }
     }
 }

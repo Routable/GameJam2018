@@ -23,7 +23,7 @@ public class TrapCard : MonoBehaviour {
         switch (trapCardType)
         {
             case TrapCardType.AddThreeCards:
-                //do stuff
+                usingPlayer.DrawCard(3);
                 break;
 
             default:
