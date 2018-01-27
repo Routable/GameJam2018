@@ -233,6 +233,7 @@
   <ItemGroup>
     <Compile Include="Assets\Card.cs" />
     <Compile Include="Assets\Player.cs" />
+    <Compile Include="Assets\TrapCard.cs" />
     <Compile Include="Assets\WinCondition.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
