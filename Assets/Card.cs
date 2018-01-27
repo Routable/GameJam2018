@@ -19,11 +19,18 @@ public class Card : MonoBehaviour {
     public string description;
     public Sprite cardImage;
 
-    public Card()
+    public Card(CardType type = CardType.None)
     {
-        Array values = Enum.GetValues(typeof(CardType));
-        System.Random random = new System.Random();
-        //account for default enum type
-        cardType = (CardType)values.GetValue(random.Next(values.Length - 1) + 1);
+        if (type == CardType.None)
+        {
+            Array values = Enum.GetValues(typeof(CardType));
+            System.Random random = new System.Random();
+            //account for default enum type
+            cardType = (CardType)values.GetValue(random.Next(values.Length - 1) + 1);
+        }
+        else
+        {
+            cardType = type;
+        }
     }
 }

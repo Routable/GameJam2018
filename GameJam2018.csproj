@@ -286,6 +286,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Card.cs" />
+    <Compile Include="Assets\DiscardPile.cs" />
     <Compile Include="Assets\GetEnum.cs" />
     <Compile Include="Assets\Player.cs" />
     <Compile Include="Assets\TrapCard.cs" />

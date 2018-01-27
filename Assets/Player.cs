@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
     public List<TrapCard> trapCards;
     public List<Player> otherPlayers;
     public WinCondition condition;
+    public DiscardPile discardPile;
     public int amountOfCardsPerTrapCard;
     public bool isTurn;
     private bool playPhase;
@@ -23,19 +24,16 @@ public class Player : MonoBehaviour {
     public void TryTradeCardsForTrapCard(GetEnum g)
     {
         if (playPhase && HasEnoughCards(g.state, amountOfCardsPerTrapCard))
-            DoTrade(g.state, amountOfCardsPerTrapCard);
+        {
+            RemoveCards(amountOfCardsPerTrapCard, g.state);
+            trapCards.Add(new TrapCard());
+        }
     }
 
     //ending turn
     private void EndTurn()
     {
         //GiveCard();
-    }
-
-    private void DoTrade(CardType ct, int amount)
-    {
-        RemoveCards(amount, ct);
-        trapCards.Add(new TrapCard());
     }
 
     private void DrawCard()
@@ -45,9 +43,12 @@ public class Player : MonoBehaviour {
         playerCards.Add(card);
     }
 
-    private void GiveCard(Player player)
+    public void DiscardCard(GetEnum g)
     {
-        //give a card to someone here
+        if (g.state == CardType.None)
+            return;
+
+        discardPile.discardCards.Add(new Card(g.state));
     }
 
     private bool HasEnoughCards(CardType ct, int targetAmount)
