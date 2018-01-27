@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
     //ending turn
     private void EndTurn()
     {
-        GiveCard();
+        //GiveCard();
     }
 
     private void DoTrade(CardType ct, int amount)
