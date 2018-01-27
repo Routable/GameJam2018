@@ -288,10 +288,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\btnFX.cs" />
     <Compile Include="Assets\Card.cs" />
     <Compile Include="Assets\DiscardPile.cs" />
     <Compile Include="Assets\GetEnum.cs" />
     <Compile Include="Assets\Player Asset\Menu\MainMenu.cs" />
+    <Compile Include="Assets\Player Asset\Menu\Manager.cs" />
     <Compile Include="Assets\Player.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
