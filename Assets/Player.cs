@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
     public WinCondition condition;
     public int amountOfCardsPerTrapCard;
     public bool isTurn;
-    public TurnState state;
+   // public TurnState state;
 
     public void TradeCardsForTrapCard(CardType ct, int amount)
     {
