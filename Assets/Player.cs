@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
     public List<Card> playerCards;
     public WinCondition condition;
     public bool isTurn;
-    public TurnState state;
+   // public TurnState state;
 
 
 
