@@ -296,6 +296,7 @@
     <Compile Include="Assets\Card.cs" />
     <Compile Include="Assets\CurrentPlayer.cs" />
     <Compile Include="Assets\DiscardPile.cs" />
+    <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\GameServerManager.cs" />
     <Compile Include="Assets\GetEnum.cs" />
     <Compile Include="Assets\Lobby\Scripts\DraggablePanel.cs" />

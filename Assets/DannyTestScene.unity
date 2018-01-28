@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 69916877}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,23 +184,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 69916875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b63632b0c58b7ad4ebaed9b3e5d4057a, type: 3}
+  m_Script: {fileID: 11500000, guid: cb99ad74c6774f54ab81e32cb2d5cca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerCards: []
   trapCards: []
-  ai: {fileID: 1022833780}
+  player: {fileID: 1022833780}
   condition: {fileID: 624080382}
   discardPile: {fileID: 0}
   amountOfCardsPerTrapCard: 0
   isTurn: 0
-  isAi: 1
-  rockAmount: {fileID: 0}
-  waterAmount: {fileID: 0}
-  woodAmount: {fileID: 0}
+  ge: {fileID: 1453452139}
   aiText: {fileID: 1050655925}
-  trapCardPrefab: {fileID: 0}
-  trapCardParent: {fileID: 0}
+  enemyTrapCardPrefab: {fileID: 1269605424374766, guid: 444905fd72657a54d882c6f750c821b6,
+    type: 2}
 --- !u!114 &117743439 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114946108474134658, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
@@ -1807,6 +1804,47 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1453452138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1453452140}
+  - component: {fileID: 1453452139}
+  m_Layer: 0
+  m_Name: stupidstateobject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1453452139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453452138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab1fc5ae2d75334ea255c5d801ac252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+--- !u!4 &1453452140
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453452138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1518008482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,6 +2261,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114438122988602674, guid: 867255e4ed617184e80c8428e1f92f03,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1022833780}
+    - target: {fileID: 114438122988602674, guid: 867255e4ed617184e80c8428e1f92f03,
+        type: 2}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 69916877}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 867255e4ed617184e80c8428e1f92f03, type: 2}
   m_IsPrefabParent: 0

@@ -5,41 +5,57 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class Player : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
     public List<Card> playerCards = new List<Card>();
     public List<TrapCard> trapCards;
-    public Enemy ai;
+    public Player player;
     public WinCondition condition;
     public DiscardPile discardPile;
     public int amountOfCardsPerTrapCard;
     public bool isTurn;
-
-    public bool isAi;
+    public GetEnum ge;
 
     private bool playPhase;
-    public Text rockAmount;
-    public Text waterAmount;
-    public Text woodAmount;
 
     public Text aiText;
 
-    public GameObject trapCardPrefab;
-    public Transform trapCardParent;
+    public GameObject enemyTrapCardPrefab;
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            if (!isAi)
-                StartTurn();
-        }
-    }
-
-    public void StartTurn()
+    public void StartAiTurn()
     {
         isTurn = true;
         DrawCard(2);
         playPhase = true;
+
+        //AI checks for extra cards and buys trap cards
+        ge.SetState(CardType.Wood);
+        if (condition.CheckEnoughCardsOfType(CardType.Wood, playerCards, amountOfCardsPerTrapCard))
+            TryTradeCardsForTrapCard(ge);
+
+        ge.SetState(CardType.Water);
+        if (condition.CheckEnoughCardsOfType(CardType.Water, playerCards, amountOfCardsPerTrapCard))
+            TryTradeCardsForTrapCard(ge);
+
+        ge.SetState(CardType.Rock);
+        if (condition.CheckEnoughCardsOfType(CardType.Rock, playerCards, amountOfCardsPerTrapCard))
+            TryTradeCardsForTrapCard(ge);
+
+
+        //Make AI use random trap cards
+        while (trapCards.Count() > 0)
+        {
+            if (Random.Range(0, 3) > 1)
+            {
+                trapCards[Random.Range(0, trapCards.Count)].UseCard();
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        EndTurn();
     }
 
     //during turn
@@ -48,9 +64,8 @@ public class Player : MonoBehaviour {
         if (playPhase && HasEnoughCards(g.state, amountOfCardsPerTrapCard))
         {
             RemoveCards(amountOfCardsPerTrapCard, g.state);
-            GameObject tc = Instantiate(trapCardPrefab, Vector3.zero, Quaternion.identity);
-            tc.transform.SetParent(trapCardParent);
-            trapCards.Add(tc.GetComponent<TrapCard>().GetNewTrapCard(true));
+            GameObject tc = Instantiate(enemyTrapCardPrefab, Vector3.zero, Quaternion.identity);
+            trapCards.Add(tc.GetComponent<TrapCard>().GetNewTrapCard());
         }
     }
 
@@ -61,7 +76,7 @@ public class Player : MonoBehaviour {
         {
             playPhase = false;
             isTurn = false;
-            ai.StartAiTurn();
+            player.StartTurn();
         }
     }
 
@@ -119,20 +134,13 @@ public class Player : MonoBehaviour {
 
     private void CheckWinAndUpdateUI()
     {
-        if (!isAi)
-        {
-            Debug.Log("THIS IS THE PLAYER");
-            Debug.Log(condition.CheckWin(playerCards));
-            rockAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Rock).Count();
-            waterAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Water).Count();
-            woodAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Wood).Count();
-        }
-        //this is run from AI, this is why we dont code stupidly like this
-        else
-        {
-            Debug.Log("THIS IS THE AI");
-            Debug.Log(condition.CheckWin(playerCards));
-            aiText.text = "I has " + playerCards.Count() + " cards";
-        }
+        Debug.Log("THIS IS THE AI");
+        Debug.Log(condition.CheckWin(playerCards));
+        aiText.text = "I has " + playerCards.Count() + " cards";
+    }
+
+    public void StartPlayerTurn()
+    {
+        player.StartTurn();
     }
 }
