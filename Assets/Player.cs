@@ -34,7 +34,16 @@ public class Player : NetworkBehaviour {
     [Command]
     public void CmdTellServerToDoStuff()
     {
-        amountOfCardsPerTrapCard++;
+        RpcTestClient();
+    }
+
+    [ClientRpc]
+    public void RpcTestClient()
+    {
+        if (isLocalPlayer)
+        {
+            amountOfCardsPerTrapCard++;
+        }
     }
 
     //start of turn
