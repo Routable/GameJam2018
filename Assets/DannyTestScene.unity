@@ -215,8 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137f63ec8a80159438885d3f80029653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trapCardType: 0
-  trapCardText: 
+  trapCardType: 1
+  trapCardText: Steals 1 random enemy card and add it to your collection
 --- !u!4 &44983587
 Transform:
   m_ObjectHideFlags: 0
@@ -338,6 +338,45 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1619847077}
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!1 &126952133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 126952134}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &126952134
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 126952133}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 319211458}
+  - {fileID: 981650767}
+  - {fileID: 468553020}
+  - {fileID: 446408464}
+  - {fileID: 1299252623}
+  - {fileID: 1609484400}
+  m_Father: {fileID: 1431368438}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &129096594
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,12 +840,12 @@ Prefab:
     - target: {fileID: 224529288612738792, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 51.927277
+      value: 51.010906
       objectReference: {fileID: 0}
     - target: {fileID: 224073548081359286, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0.0714
+      value: 0.07014
       objectReference: {fileID: 0}
     - target: {fileID: 114479013965092716, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
@@ -987,7 +1026,6 @@ GameObject:
   - component: {fileID: 319211458}
   - component: {fileID: 319211461}
   - component: {fileID: 319211460}
-  - component: {fileID: 319211459}
   m_Layer: 5
   m_Name: BackgroundImage
   m_TagString: Untagged
@@ -1001,31 +1039,18 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 319211457}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.81, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1431368438}
+  m_Father: {fileID: 126952134}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &319211459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 319211457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1254083943, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 3
-  m_AspectRatio: 1
 --- !u!114 &319211460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1185,17 +1210,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 446408463}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.35, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1431368438}
+  m_Father: {fileID: 126952134}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -24}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0.2, y: 0.3}
+  m_AnchorMax: {x: 0.9, y: 0.75}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446408465
 MonoBehaviour:
@@ -1255,15 +1280,15 @@ RectTransform:
   m_GameObject: {fileID: 468553019}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -4.26, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1431368438}
-  m_RootOrder: 5
+  m_Father: {fileID: 126952134}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 303, y: 59}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0.3, y: 0.7}
+  m_AnchorMax: {x: 0.6, y: 0.9}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &468553021
 MonoBehaviour:
@@ -1453,12 +1478,12 @@ Prefab:
     - target: {fileID: 224529288612738792, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 51.927277
+      value: 51.010906
       objectReference: {fileID: 0}
     - target: {fileID: 224073548081359286, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0.0714
+      value: 0.07014
       objectReference: {fileID: 0}
     - target: {fileID: 114015916290154918, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
@@ -1724,7 +1749,7 @@ RectTransform:
   - {fileID: 1050655924}
   - {fileID: 1656777313}
   m_Father: {fileID: 1431368438}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2130,17 +2155,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 981650766}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9.22, y: 1.34, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1431368438}
+  m_Father: {fileID: 126952134}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -130}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0.4}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &981650768
 MonoBehaviour:
@@ -2440,7 +2465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trapCardType: 0
-  trapCardText: 
+  trapCardText: Add 2 cards to your inventory
 --- !u!1 &1185082320
 GameObject:
   m_ObjectHideFlags: 0
@@ -2713,17 +2738,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1299252622}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.14, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1431368438}
-  m_RootOrder: 2
+  m_Father: {fileID: 126952134}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 124, y: -20}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0.1, y: 0.5}
+  m_AnchorMax: {x: 0.4, y: 0.7}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299252624
 MonoBehaviour:
@@ -2900,8 +2925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137f63ec8a80159438885d3f80029653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trapCardType: 0
-  trapCardText: 
+  trapCardType: 3
+  trapCardText: Swap up to 3 cards with the enemy
 --- !u!4 &1398074000
 Transform:
   m_ObjectHideFlags: 0
@@ -3074,12 +3099,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 319211458}
-  - {fileID: 981650767}
-  - {fileID: 1299252623}
-  - {fileID: 446408464}
-  - {fileID: 1609484400}
-  - {fileID: 468553020}
+  - {fileID: 126952134}
   - {fileID: 639668953}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -3581,15 +3601,15 @@ RectTransform:
   m_GameObject: {fileID: 1609484399}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.98, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1431368438}
-  m_RootOrder: 4
+  m_Father: {fileID: 126952134}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -182, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0.55, y: 0.5}
+  m_AnchorMax: {x: 0.85, y: 0.8}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1609484401
 MonoBehaviour:
@@ -3733,12 +3753,12 @@ Prefab:
     - target: {fileID: 224529288612738792, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 51.92727
+      value: 51.01091
       objectReference: {fileID: 0}
     - target: {fileID: 224073548081359286, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0.071399994
+      value: 0.070140004
       objectReference: {fileID: 0}
     - target: {fileID: 114479013965092716, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
@@ -4025,8 +4045,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137f63ec8a80159438885d3f80029653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trapCardType: 0
-  trapCardText: 
+  trapCardType: 2
+  trapCardText: Discard up to 5 cards, draw that many
 --- !u!1 &2141083484
 GameObject:
   m_ObjectHideFlags: 0
