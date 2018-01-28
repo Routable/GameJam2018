@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class Player : MonoBehaviour {
+public class Player : NetworkBehaviour {
     public List<Card> playerCards = new List<Card>();
     public List<TrapCard> trapCards;
     public List<Player> otherPlayers;
     public WinCondition condition;
     public DiscardPile discardPile;
+    [SyncVar]
     public int amountOfCardsPerTrapCard;
     public bool isTurn;
 
