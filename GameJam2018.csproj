@@ -303,6 +303,7 @@
     <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerEntry.cs" />
     <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerList.cs" />
     <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyTopPanel.cs" />
+    <Compile Include="Assets\Menu\AudioTesting.cs" />
     <Compile Include="Assets\Menu\BackToMain.cs" />
     <Compile Include="Assets\Menu\BirdMove.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
