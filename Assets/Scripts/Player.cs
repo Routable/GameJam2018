@@ -5,58 +5,50 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class Player : MonoBehaviour {
-    public List<Card> playerCards = new List<Card>();
-    public List<TrapCard> trapCards;
+public class Player : PlayerBase {
     public Enemy ai;
-    public WinCondition condition;
-    public DiscardPile discardPile;
-    public int amountOfCardsPerTrapCard;
-    public bool startTurn;
 
-    public Text winCondition;
-
-    private bool playPhase;
     public Text rockAmount;
     public Text waterAmount;
     public Text woodAmount;
-
-    public Text aiText;
-
-    public WinConditionDb wcdb;
+    public Text winCondition;
+    public Text drawCardText;
 
     public GameObject trapCardPrefab;
     public Transform trapCardParent;
 
-    public void Update()
+    public override void SetupGame()
     {
-        if (startTurn)
-        {
-            startTurn = false;
-            Invoke(("StartTurn"), 0.5f);
-        }
-    }
-
-    public void StartGame()
-    {
-        condition = wcdb.GetNewWinCondition();
+        base.SetupGame();
+        drawCardText.text = "DRAW CARDS";
         winCondition.text = "Collect These:\nWood x " + condition.neededCards.Where(x => x == CardType.Wood).Count() + "\nWater x " + condition.neededCards.Where(x => x == CardType.Water).Count() + "\nRock x " + condition.neededCards.Where(x => x == CardType.Rock).Count();
-        StartTurn();
+
     }
 
-    public void StartTurn()
+    public override void StartTurn()
     {
-        var go = GameObject.Find("Start Game");
-        if (go != null && go.activeInHierarchy)
+        base.StartTurn();
+        drawCardText.text = "DRAW CARDS";
+    }
+    public void TappedStartEndButton(Text text)
+    {
+        if (playPhase)
         {
-            go.SetActive(false);
+            if (text.text == "DRAW CARDS")
+            {
+                DrawCard(amountOfCardsPerTrapCard);
+                text.text = "END TURN";
+            }
+            else if (text.text == "END TURN")
+            {
+                text.text = "WAITING FOR AI";
+                EndTurn();
+            }
         }
-        DrawCard(2);
-        playPhase = true;
     }
 
     //during turn
-    public void TryTradeCardsForTrapCard(GetEnum g)
+    public override void TryTradeCardsForTrapCard(GetEnum g)
     {
         if (playPhase && HasEnoughCards(g.state, amountOfCardsPerTrapCard))
         {
@@ -67,72 +59,15 @@ public class Player : MonoBehaviour {
         }
     }
 
-    //ending turn
-    public void EndTurn()
+    public override void CheckWin()
     {
-        if (playPhase)
+        win = condition.CheckWin(playerCards);
+        if (win)
         {
-            playPhase = false;
-            ai.startTurn = true;
+            gh.HandleWin(isPlayer);
         }
-    }
 
-    public void DrawCard(int amount = 1)
-    {
-        while (amount > 0)
-        {
-            Card card = new Card();
-            //Card animations and stuff here
-            playerCards.Add(card);
-            amount--;
-        }
-        CheckWinAndUpdateUI();
-    }
-
-    public void DiscardCard(GetEnum g)
-    {
-        if (g.state == CardType.None)
-            return;
-
-        discardPile.discardCards.Add(new Card(g.state));
-        CheckWinAndUpdateUI();
-    }
-
-    private bool HasEnoughCards(CardType ct, int targetAmount)
-    {
-        if (playerCards.Where(x => x.cardType == ct).Count() >= targetAmount)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public void RemoveCards(int amount, CardType cardType = CardType.None)
-    {
-        while (amount > 0)
-        {
-            //random
-            if (cardType == CardType.None)
-            {
-                if (playerCards.Count >= 0)
-                {
-                    playerCards.RemoveAt(Random.Range(0, playerCards.Count));
-                }
-            }
-            else
-            {
-                if (playerCards.Where(x => x.cardType == cardType).Count() > 0)
-                    playerCards.Remove(playerCards.First(x => x.cardType == cardType));
-            }
-            amount--;
-        }
-        CheckWinAndUpdateUI();
-    }
-
-    public void CheckWinAndUpdateUI()
-    {
-        Debug.Log("THIS IS THE PLAYER");
-        Debug.Log(condition.CheckWin(playerCards));
+        //Updating Player's UI
         rockAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Rock).Count();
         waterAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Water).Count();
         woodAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Wood).Count();

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -189,11 +189,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCards: []
   trapCards: []
-  player: {fileID: 1022833780}
-  condition: {fileID: 624080382}
-  discardPile: {fileID: 0}
+  condition: {fileID: 0}
   amountOfCardsPerTrapCard: 0
-  startTurn: 0
+  playPhase: 0
+  win: 0
+  isPlayer: 0
+  wcdb: {fileID: 147400960}
+  gh: {fileID: 142487388}
+  player: {fileID: 1022833780}
   ge: {fileID: 1453452139}
   aiText: {fileID: 1050655925}
   enemyTrapCardPrefab: {fileID: 1269605424374766, guid: 444905fd72657a54d882c6f750c821b6,
@@ -334,7 +337,7 @@ Prefab:
         type: 2}
       propertyPath: condition
       value: 
-      objectReference: {fileID: 624080382}
+      objectReference: {fileID: 0}
     - target: {fileID: 114055416329920106, guid: aa6b02eabd4ebab4aa34c0d99882b747,
         type: 2}
       propertyPath: rockAmount
@@ -364,7 +367,7 @@ Prefab:
         type: 2}
       propertyPath: gh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 142487388}
     - target: {fileID: 114055416329920106, guid: aa6b02eabd4ebab4aa34c0d99882b747,
         type: 2}
       propertyPath: wcdb
@@ -375,10 +378,62 @@ Prefab:
       propertyPath: winCondition
       value: 
       objectReference: {fileID: 1570160744}
+    - target: {fileID: 114055416329920106, guid: aa6b02eabd4ebab4aa34c0d99882b747,
+        type: 2}
+      propertyPath: drawCardText
+      value: 
+      objectReference: {fileID: 1422824472}
+    - target: {fileID: 114055416329920106, guid: aa6b02eabd4ebab4aa34c0d99882b747,
+        type: 2}
+      propertyPath: isPlayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114115327358019380, guid: aa6b02eabd4ebab4aa34c0d99882b747, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: aa6b02eabd4ebab4aa34c0d99882b747, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &142487387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 142487389}
+  - component: {fileID: 142487388}
+  m_Layer: 0
+  m_Name: GameHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &142487388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 142487387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e55cbbe3713a99d42a33bbcd33440aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1022833780}
+  enemy: {fileID: 69916877}
+--- !u!4 &142487389
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 142487387}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 402.6883, y: 343.01328, z: -1.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &147400959
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +444,7 @@ GameObject:
   - component: {fileID: 147400961}
   - component: {fileID: 147400960}
   m_Layer: 0
-  m_Name: WinConditions
+  m_Name: WinConditionDB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -541,12 +596,12 @@ Prefab:
     - target: {fileID: 224529288612738792, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 54.065453
+      value: 91.63637
       objectReference: {fileID: 0}
     - target: {fileID: 224073548081359286, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0.07434
+      value: 0.126
       objectReference: {fileID: 0}
     - target: {fileID: 114479013965092716, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
@@ -1106,12 +1161,12 @@ Prefab:
     - target: {fileID: 224529288612738792, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 54.065453
+      value: 91.63637
       objectReference: {fileID: 0}
     - target: {fileID: 224073548081359286, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0.07434
+      value: 0.126
       objectReference: {fileID: 0}
     - target: {fileID: 114015916290154918, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
@@ -1277,7 +1332,6 @@ GameObject:
   - component: {fileID: 624080379}
   - component: {fileID: 624080381}
   - component: {fileID: 624080380}
-  - component: {fileID: 624080382}
   m_Layer: 5
   m_Name: Win Condition
   m_TagString: Untagged
@@ -1338,18 +1392,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 624080378}
---- !u!114 &624080382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 624080378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c7a4629b71f1c6459d01039896950b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  neededCards: 0100000001000000010000000200000001000000020000000200000003000000
 --- !u!1 &639668952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,6 +1578,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 0
+--- !u!1 &697420020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 697420021}
+  m_Layer: 0
+  m_Name: EnemyWinCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &697420021
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697420020}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &706279614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,6 +1873,34 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 133989339}
   m_Script: {fileID: 11500000, guid: b63632b0c58b7ad4ebaed9b3e5d4057a, type: 3}
+--- !u!1 &1043859418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1043859419}
+  m_Layer: 0
+  m_Name: PlayerWinCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1043859419
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1043859418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1050655923
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,9 +2351,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'END TURN
-
-'
+  m_Text: DRAW CARDS
 --- !u!222 &1422824473
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2702,11 +2798,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1022833780}
-        m_MethodName: EndTurn
-        m_Mode: 1
+        m_MethodName: TappedStartEndButton
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1422824472}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2924,12 +3020,12 @@ Prefab:
     - target: {fileID: 224529288612738792, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 54.065453
+      value: 91.63637
       objectReference: {fileID: 0}
     - target: {fileID: 224073548081359286, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0.07434
+      value: 0.126
       objectReference: {fileID: 0}
     - target: {fileID: 114479013965092716, guid: c2d6d70bf6269e04fa6ab56426f9dee2,
         type: 2}
@@ -3084,7 +3180,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1022833780}
+      - m_Target: {fileID: 142487388}
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:

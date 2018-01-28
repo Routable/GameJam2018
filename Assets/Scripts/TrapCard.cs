@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,15 +12,12 @@ public class TrapCard : MonoBehaviour {
     TrapCardType trapCardType;
     public Player player;
     public Enemy enemy;
-    public bool isPlayer;
 
     public TrapCard GetNewTrapCard(bool player = false) {
         //TODO: fancy math for weighted cards?
-        //===============================================================TSIFSEFJSELIFJSELIJ THIS IS BROKEN
-        Array values = Enum.GetValues(typeof(TrapCardType));
-        System.Random random = new System.Random();
-        trapCardType = (TrapCardType)values.GetValue(random.Next(values.Length - 1) + 1);
-        isPlayer = player;
+
+        int randType = Random.Range(0, TrapCardType.GetValues(typeof(TrapCardType)).Length);
+        trapCardType = (TrapCardType)randType;
         return (TrapCard)this.MemberwiseClone();
     }
 
@@ -31,56 +27,41 @@ public class TrapCard : MonoBehaviour {
         enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>();
     }
 
-    public void UseCard()
+    public void UseCard(bool isPlayer)
     {
+        PlayerBase user;
+        PlayerBase target;
+
         if (isPlayer)
         {
-            switch (trapCardType)
-            {
-                case TrapCardType.AddThreeCards:
-                    player.DrawCard(3);
-                    break;
-
-                case TrapCardType.StealEnemyResource:
-                    if (enemy.playerCards.Count >= 1)
-                    {
-                        int r = UnityEngine.Random.Range(0, enemy.playerCards.Count);
-                        player.playerCards.Add(enemy.playerCards[r]);
-                        enemy.playerCards.RemoveAt(r);
-                        player.CheckWinAndUpdateUI();
-                        enemy.CheckWinAndUpdateUI();
-                    }
-                    break;
-
-                default:
-                    Debug.LogError("Danny you are dumb");
-                    break;
-            }
+            user = player;
+            target = enemy;
+        }
+        else {
+            user = enemy;
+            target = player;
         }
 
-        if (!isPlayer)
+        switch (trapCardType)
         {
-            switch (trapCardType)
-            {
-                case TrapCardType.AddThreeCards:
-                    enemy.DrawCard(3);
-                    break;
+            case TrapCardType.AddThreeCards:
+                user.DrawCard(3);
+                break;
 
-                case TrapCardType.StealEnemyResource:
-                    if (player.playerCards.Count >= 1)
-                    {
-                        int r = UnityEngine.Random.Range(0, player.playerCards.Count);
-                        enemy.playerCards.Add(player.playerCards[r]);
-                        player.playerCards.RemoveAt(r);
-                        player.CheckWinAndUpdateUI();
-                        enemy.CheckWinAndUpdateUI();
-                    }
-                    break;
+            case TrapCardType.StealEnemyResource:
+                if (target.playerCards.Count >= 1)
+                {
+                    int r = Random.Range(0, target.playerCards.Count);
+                    user.playerCards.Add(target.playerCards[r]);
+                    target.playerCards.RemoveAt(r);
+                    player.CheckWin();
+                    enemy.CheckWin();
+                }
+                break;
 
-                default:
-                    Debug.LogError("Danny you are dumb");
-                    break;
-            }
+            default:
+                Debug.LogError("Danny you are dumb");
+                break;
         }
 
         Destroy(this.gameObject);

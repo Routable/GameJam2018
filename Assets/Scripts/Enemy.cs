@@ -5,33 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class Enemy : MonoBehaviour
+public class Enemy : PlayerBase
 {
-    public List<Card> playerCards = new List<Card>();
-    public List<TrapCard> trapCards;
     public Player player;
-    public WinCondition condition;
-    public DiscardPile discardPile;
-    public int amountOfCardsPerTrapCard;
-    public bool startTurn;
     public GetEnum ge;
-
-    private bool playPhase;
-
     public Text aiText;
-
     public GameObject enemyTrapCardPrefab;
 
-    public void Update()
-    {
-        if (startTurn)
-        {
-            startTurn = false;
-            Invoke(("StartAiTurn"), 0.5f);
-        }
-    }
-
-    private void StartAiTurn()
+    public override void StartTurn()
     {
         DrawCard(2);
         playPhase = true;
@@ -55,7 +36,7 @@ public class Enemy : MonoBehaviour
         {
             if (Random.Range(0, 3) > 1)
             {
-                trapCards[Random.Range(0, trapCards.Count)].UseCard();
+                trapCards[Random.Range(0, trapCards.Count)].UseCard(isPlayer);
             }
             else
             {
@@ -67,7 +48,7 @@ public class Enemy : MonoBehaviour
     }
 
     //during turn
-    public void TryTradeCardsForTrapCard(GetEnum g)
+    public override void TryTradeCardsForTrapCard(GetEnum g)
     {
         if (playPhase && HasEnoughCards(g.state, amountOfCardsPerTrapCard))
         {
@@ -77,72 +58,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //ending turn
-    public void EndTurn()
+    public override void CheckWin()
     {
-        if (playPhase)
+        win = condition.CheckWin(playerCards);
+        if (win)
         {
-            playPhase = false;
-            player.startTurn = true;
+            gh.HandleWin(isPlayer);
         }
-    }
 
-    public void DrawCard(int amount = 1)
-    {
-        while (amount > 0)
-        {
-            Card card = new Card();
-            //Card animations and stuff here
-            playerCards.Add(card);
-            amount--;
-        }
-        CheckWinAndUpdateUI();
-    }
-
-    public void DiscardCard(GetEnum g)
-    {
-        if (g.state == CardType.None)
-            return;
-
-        discardPile.discardCards.Add(new Card(g.state));
-        CheckWinAndUpdateUI();
-    }
-
-    private bool HasEnoughCards(CardType ct, int targetAmount)
-    {
-        if (playerCards.Where(x => x.cardType == ct).Count() >= targetAmount)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public void RemoveCards(int amount, CardType cardType = CardType.None)
-    {
-        while (amount > 0)
-        {
-            //random
-            if (cardType == CardType.None)
-            {
-                if (playerCards.Count >= 0)
-                {
-                    playerCards.RemoveAt(Random.Range(0, playerCards.Count));
-                }
-            }
-            else
-            {
-                if (playerCards.Where(x => x.cardType == cardType).Count() > 0)
-                    playerCards.Remove(playerCards.First(x => x.cardType == cardType));
-            }
-            amount--;
-        }
-        CheckWinAndUpdateUI();
-    }
-
-    public void CheckWinAndUpdateUI()
-    {
-        Debug.Log("THIS IS THE AI");
-        Debug.Log(condition.CheckWin(playerCards));
         aiText.text = "I has " + playerCards.Count() + " cards";
     }
 }
