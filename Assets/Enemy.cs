@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public WinCondition condition;
     public DiscardPile discardPile;
     public int amountOfCardsPerTrapCard;
-    public bool isTurn;
+    public bool startTurn;
     public GetEnum ge;
 
     private bool playPhase;
@@ -22,9 +22,17 @@ public class Enemy : MonoBehaviour
 
     public GameObject enemyTrapCardPrefab;
 
-    public void StartAiTurn()
+    public void Update()
     {
-        isTurn = true;
+        if (startTurn)
+        {
+            startTurn = false;
+            Invoke(("StartAiTurn"), 0.5f);
+        }
+    }
+
+    private void StartAiTurn()
+    {
         DrawCard(2);
         playPhase = true;
 
@@ -75,8 +83,7 @@ public class Enemy : MonoBehaviour
         if (playPhase)
         {
             playPhase = false;
-            isTurn = false;
-            player.StartTurn();
+            player.startTurn = true;
         }
     }
 
@@ -132,15 +139,10 @@ public class Enemy : MonoBehaviour
         CheckWinAndUpdateUI();
     }
 
-    private void CheckWinAndUpdateUI()
+    public void CheckWinAndUpdateUI()
     {
         Debug.Log("THIS IS THE AI");
         Debug.Log(condition.CheckWin(playerCards));
         aiText.text = "I has " + playerCards.Count() + " cards";
-    }
-
-    public void StartPlayerTurn()
-    {
-        player.StartTurn();
     }
 }

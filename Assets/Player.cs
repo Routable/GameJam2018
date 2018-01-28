@@ -12,9 +12,9 @@ public class Player : MonoBehaviour {
     public WinCondition condition;
     public DiscardPile discardPile;
     public int amountOfCardsPerTrapCard;
-    public bool isTurn;
+    public bool startTurn;
 
-    public bool isAi;
+    public Text winCondition;
 
     private bool playPhase;
     public Text rockAmount;
@@ -23,21 +23,34 @@ public class Player : MonoBehaviour {
 
     public Text aiText;
 
+    public WinConditionDb wcdb;
+
     public GameObject trapCardPrefab;
     public Transform trapCardParent;
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (startTurn)
         {
-            if (!isAi)
-                StartTurn();
+            startTurn = false;
+            Invoke(("StartTurn"), 0.5f);
         }
+    }
+
+    public void StartGame()
+    {
+        condition = wcdb.GetNewWinCondition();
+        winCondition.text = "Collect These:\nWood x " + condition.neededCards.Where(x => x == CardType.Wood).Count() + "\nWater x " + condition.neededCards.Where(x => x == CardType.Water).Count() + "\nRock x " + condition.neededCards.Where(x => x == CardType.Rock).Count();
+        StartTurn();
     }
 
     public void StartTurn()
     {
-        isTurn = true;
+        var go = GameObject.Find("Start Game");
+        if (go != null && go.activeInHierarchy)
+        {
+            go.SetActive(false);
+        }
         DrawCard(2);
         playPhase = true;
     }
@@ -60,8 +73,7 @@ public class Player : MonoBehaviour {
         if (playPhase)
         {
             playPhase = false;
-            isTurn = false;
-            ai.StartAiTurn();
+            ai.startTurn = true;
         }
     }
 
@@ -117,22 +129,12 @@ public class Player : MonoBehaviour {
         CheckWinAndUpdateUI();
     }
 
-    private void CheckWinAndUpdateUI()
+    public void CheckWinAndUpdateUI()
     {
-        if (!isAi)
-        {
-            Debug.Log("THIS IS THE PLAYER");
-            Debug.Log(condition.CheckWin(playerCards));
-            rockAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Rock).Count();
-            waterAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Water).Count();
-            woodAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Wood).Count();
-        }
-        //this is run from AI, this is why we dont code stupidly like this
-        else
-        {
-            Debug.Log("THIS IS THE AI");
-            Debug.Log(condition.CheckWin(playerCards));
-            aiText.text = "I has " + playerCards.Count() + " cards";
-        }
+        Debug.Log("THIS IS THE PLAYER");
+        Debug.Log(condition.CheckWin(playerCards));
+        rockAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Rock).Count();
+        waterAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Water).Count();
+        woodAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Wood).Count();
     }
 }
