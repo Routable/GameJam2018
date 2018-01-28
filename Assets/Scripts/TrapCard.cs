@@ -35,10 +35,12 @@ public class TrapCard : MonoBehaviour {
         {
             user = player;
             target = enemy;
+            player.trapCards.Remove(this);
         }
         else {
             user = enemy;
             target = player;
+            enemy.trapCards.Remove(this);
         }
 
         switch (trapCardType)

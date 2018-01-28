@@ -79,6 +79,6 @@ public class Enemy : PlayerBase
 
         int number = condition.CheckWinPercent(playerCards);
 
-        aiText.text = "The AI has " + playerCards.Count() + " resources.\nThey have collected " + number + " resources\nneeded to get off the island.";
+        aiText.text = "Your Arch-Nemesis has " + playerCards.Count() + " resources.\nThey have collected " + number + " resources\nneeded to get off the island.";
     }
 }

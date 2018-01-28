@@ -312,6 +312,7 @@
     <Compile Include="Assets\SampleScenes\Scripts\NetworkLobbyHook.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\NetworkSpaceship.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\NetworkSpaceshipBullet.cs" />
+    <Compile Include="Assets\SceneHandler.cs" />
     <Compile Include="Assets\Scripts\BasePlayer.cs" />
     <Compile Include="Assets\Scripts\btnFX.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />

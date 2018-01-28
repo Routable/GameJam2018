@@ -8,10 +8,11 @@ public class MainMenu : MonoBehaviour {
     public AudioSource source;
     public AudioClip hover;
     public AudioClip click;
+    public GameObject howToPlay;
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("DannyTestScene");
     }
 
     public void QuitGame()
@@ -36,14 +37,8 @@ public class MainMenu : MonoBehaviour {
         audio.Play();
     }
 
-    public void LoadMenu()
+    public void LoadHowToPlay()
     {
-        SceneManager.LoadScene(0);
+        howToPlay.SetActive(true);
     }
-
-    public void HowToPlay()
-    {
-        SceneManager.LoadScene(2);  
-    }
-
 }

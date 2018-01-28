@@ -9,7 +9,15 @@ public class GameHandler : MonoBehaviour {
     public bool playerTurn;
     public GameObject start;
 
-    public void StartGame()
+    public Image winImage;
+    public Text winLostText;
+    public Text winLostTitle;
+    public Sprite winSprite;
+    public Sprite loseSprite;
+
+    public GameObject winLoseModal;
+
+    public void Start()
     {
         player.SetupGame();
         enemy.SetupGame();
@@ -40,15 +48,23 @@ public class GameHandler : MonoBehaviour {
     {
         if (isPlayer)
         {
-            start.transform.GetChild(0).GetComponent<Text>().text = "YOU Win! TRY AGAIN?";
+            winImage.sprite = winSprite;
+            winLostTitle.text = "YOU WIN!";
+            winLostText.text = "Using all your gathered resources you were able to successfully grab the attention of a plane that was passing overhead.\nYou were able to escape!";
+
             player.playing = false;
-            start.SetActive(true);
+            //start.SetActive(true);
         }
         else
         {
-            start.transform.GetChild(0).GetComponent<Text>().text = "YOU LOSE! TRY AGAIN?";
+            winImage.sprite = loseSprite;
+            winLostTitle.text = "YOU LOSE!";
+            winLostText.text = "You hear the whirling blades of a helicopter in the distance. You drop everything and run towards the sound. In the distance, you see the helicopter with your arch-nemesis sitting in it.\nYour arch-nemesis has left you on the island. You lose!";
+
             player.playing = false;
-            start.SetActive(true);
+            //start.SetActive(true);
         }
+
+        winLoseModal.SetActive(true);
     }
 }
