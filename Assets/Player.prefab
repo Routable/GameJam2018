@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114115327358019380}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,4 +95,4 @@ MonoBehaviour:
     i14: 183
     i15: 71
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0

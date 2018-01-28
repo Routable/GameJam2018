@@ -11,7 +11,6 @@ public class Player : NetworkBehaviour {
     public List<Player> otherPlayers;
     public WinCondition condition;
     public DiscardPile discardPile;
-    [SyncVar]
     public int amountOfCardsPerTrapCard;
     public bool isTurn;
 
@@ -27,7 +26,16 @@ public class Player : NetworkBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            StartPlayerTurn();
+            TellServerToDoStuff();
+            //StartPlayerTurn();
+        }
+    }
+
+    public void TellServerToDoStuff()
+    {
+        if (isServer)
+        {
+            amountOfCardsPerTrapCard++;
         }
     }
 
