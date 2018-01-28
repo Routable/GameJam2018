@@ -26,15 +26,15 @@ public class Player : NetworkBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            TellServerToDoStuff();
+            CmdTellServerToDoStuff();
             //StartPlayerTurn();
         }
     }
 
-    public void TellServerToDoStuff()
+    [Command]
+    public void CmdTellServerToDoStuff()
     {
-        if (isLocalPlayer)
-            amountOfCardsPerTrapCard++;
+        amountOfCardsPerTrapCard++;
     }
 
     //start of turn
