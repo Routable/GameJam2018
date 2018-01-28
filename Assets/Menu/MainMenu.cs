@@ -30,6 +30,12 @@ public class MainMenu : MonoBehaviour {
         source.PlayOneShot(click);
     }
 
+    public void CloudCLick()
+    {
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play();
+    }
+
     public void LoadMenu()
     {
         SceneManager.LoadScene(0);
