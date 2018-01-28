@@ -261,7 +261,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 57
+  m_fontSize: 62.8
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -700,7 +700,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cc6b22b9f27df47b2eb4a9200c1f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  farEnd: {fileID: 0}
+  rect: {fileID: 0}
+  width: 0
+  height: 0
+  start: {x: 0.9, y: 0.2}
+  end: {x: 0.2, y: 0.7}
+  speed: 0
 --- !u!114 &452958507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1454,7 +1459,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cc6b22b9f27df47b2eb4a9200c1f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  farEnd: {fileID: 0}
+  rect: {fileID: 0}
+  width: 0
+  height: 0
+  start: {x: 0, y: 0}
+  end: {x: 0, y: 0}
+  speed: 0
 --- !u!114 &641408935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2239,7 +2249,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 32.05
+  m_fontSize: 35.3
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2427,7 +2437,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cc6b22b9f27df47b2eb4a9200c1f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  farEnd: {fileID: 0}
+  rect: {fileID: 0}
+  width: 0
+  height: 0
+  start: {x: 0, y: 0}
+  end: {x: 0, y: 0}
+  speed: 0
 --- !u!114 &1162261819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2987,7 +3002,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 57
+  m_fontSize: 62.8
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3094,7 +3109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -25, y: -10}
+  m_AnchoredPosition: {x: -57.81, y: -97.3}
   m_SizeDelta: {x: 50, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1416201777
@@ -3108,7 +3123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cc6b22b9f27df47b2eb4a9200c1f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  farEnd: {fileID: 0}
+  rect: {fileID: 1416201776}
+  width: 0
+  height: 0
+  start: {x: 0, y: 0.2}
+  end: {x: 1, y: 0.7}
+  speed: 0
 --- !u!114 &1416201778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3415,7 +3435,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 55.25
+  m_fontSize: 60.95
   m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3536,7 +3556,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cc6b22b9f27df47b2eb4a9200c1f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  farEnd: {fileID: 0}
+  rect: {fileID: 1527150500}
+  width: 0
+  height: 0
+  start: {x: 0.5, y: 0.9}
+  end: {x: 0.8, y: 0.3}
+  speed: 0
 --- !u!114 &1527150502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3728,7 +3753,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cc6b22b9f27df47b2eb4a9200c1f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  farEnd: {fileID: 0}
+  rect: {fileID: 0}
+  width: 0
+  height: 0
+  start: {x: 0.1, y: 0.1}
+  end: {x: 0.9, y: 0.1}
+  speed: 0
 --- !u!114 &1809214562
 MonoBehaviour:
   m_ObjectHideFlags: 0

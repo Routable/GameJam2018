@@ -1,22 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 public class WhaleMove : MonoBehaviour
 {
-    public Transform farEnd;
-    public Vector3 x;
-    public Vector3 y;
-    private Vector3 turn;
+    public RectTransform rect;
+    public int width;
+    public int height;
+    public Vector2 start;
+    public Vector2 end;
     private float pass = 30f;
     bool towards = false;
+
+    public float speed;
 
 
     void Start()
     {
-        Debug.Log(x = transform.position);
+        rect = this.GetComponent<RectTransform>();
+        width = Screen.width;
+        height = Screen.height;
+        speed = Random.Range(0.5f, 1.5f);
     }
 
     void Update()
     {
-        transform.position = Vector3.Lerp(x, y, Mathf.SmoothStep(0f, 1f, Mathf.PingPong(Time.time / pass, 1f)));
+        rect.position = Vector2.Lerp(new Vector2(start.x * width, start.y * height), new Vector2(end.x * width, end.y * height), Mathf.SmoothStep(0.2f, 1f, Mathf.PingPong(Time.time / pass, speed)));
     }
 }
