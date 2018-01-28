@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,24 +12,25 @@ public enum CardType {
     Rock
 }
 
-public class Card : MonoBehaviour {
+public class Card {
     public CardType cardType;
     public string cardName;
-    public string description;
+    public string cardDescription;
     public Sprite cardImage;
 
-    public Card(CardType type = CardType.None)
+    public Card(CardType type = CardType.None, string name = "Default", string description = "default", Sprite image = null)
     {
         if (type == CardType.None)
         {
-            Array values = Enum.GetValues(typeof(CardType));
-            System.Random random = new System.Random();
-            //account for default enum type
-            cardType = (CardType)values.GetValue(random.Next(values.Length - 1) + 1);
+            cardType = (CardType)Random.Range(1, 4);
         }
         else
         {
             cardType = type;
         }
+
+        cardName = name;
+        cardDescription = description;
+        cardImage = image;
     }
 }

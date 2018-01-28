@@ -5,7 +5,7 @@ using System.Linq;
 
 [System.Serializable]
 public class WinCondition : MonoBehaviour {
-    public List<Card> neededCards;
+    public List<CardType> neededCards;
 
     public bool CheckWin(List<Card> cards)
     {
@@ -14,10 +14,13 @@ public class WinCondition : MonoBehaviour {
 
         foreach (CardType ct in cardTypes)
         {
-            win = CheckEnoughCardsOfType(ct, cards);
-            if (!win)
+            if (ct != CardType.None)
             {
-                return false;
+                win = CheckEnoughCardsOfType(ct, cards);
+                if (!win)
+                {
+                    return false;
+                }
             }
         }
         if (win)
@@ -29,7 +32,7 @@ public class WinCondition : MonoBehaviour {
 
     private bool CheckEnoughCardsOfType(CardType cardType, List<Card> cards)
     {
-        if (cards.Where(x => x.cardType == cardType).Count() >= neededCards.Where(x => x.cardType == cardType).Count())
+        if (cards.Where(x => x.cardType == cardType).Count() >= neededCards.Where(x => x == cardType).Count())
         {
             return true;
         }

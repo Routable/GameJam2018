@@ -2,21 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
-    public List<Card> playerCards;
+    public List<Card> playerCards = new List<Card>();
     public List<TrapCard> trapCards;
     public List<Player> otherPlayers;
     public WinCondition condition;
     public DiscardPile discardPile;
     public int amountOfCardsPerTrapCard;
     public bool isTurn;
+
     private bool playPhase;
+    public Text rockAmount;
+    public Text waterAmount;
+    public Text woodAmount;
+
+    public GameObject trapCardPrefab;
+    public Transform trapCardParent;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            StartPlayerTurn();
+        }
+    }
 
     //start of turn
     public void StartPlayerTurn()
     {
-        DrawCard();
+        DrawCard(2);
         playPhase = true;
     }
 
@@ -26,14 +42,20 @@ public class Player : MonoBehaviour {
         if (playPhase && HasEnoughCards(g.state, amountOfCardsPerTrapCard))
         {
             RemoveCards(amountOfCardsPerTrapCard, g.state);
-            trapCards.Add(new TrapCard());
+            GameObject tc = Instantiate(trapCardPrefab, Vector3.zero, Quaternion.identity);
+            tc.transform.SetParent(trapCardParent);
+            trapCards.Add(tc.GetComponent<TrapCard>().GetNewTrapCard());
         }
     }
 
     //ending turn
-    private void EndTurn()
+    public void EndTurn()
     {
-        //GiveCard();
+        if (playPhase)
+        {
+            playPhase = false;
+            isTurn = false;
+        }
     }
 
     public void DrawCard(int amount = 1)
@@ -45,6 +67,7 @@ public class Player : MonoBehaviour {
             playerCards.Add(card);
             amount--;
         }
+        CheckWinAndUpdateUI();
     }
 
     public void DiscardCard(GetEnum g)
@@ -53,6 +76,7 @@ public class Player : MonoBehaviour {
             return;
 
         discardPile.discardCards.Add(new Card(g.state));
+        CheckWinAndUpdateUI();
     }
 
     private bool HasEnoughCards(CardType ct, int targetAmount)
@@ -71,13 +95,26 @@ public class Player : MonoBehaviour {
             //random
             if (cardType == CardType.None)
             {
-                playerCards.RemoveAt(Random.Range(0, playerCards.Count));
+                if (playerCards.Count >= 0)
+                {
+                    playerCards.RemoveAt(Random.Range(0, playerCards.Count));
+                }
             }
             else
             {
-
+                if (playerCards.Where(x => x.cardType == cardType).Count() > 0)
+                    playerCards.Remove(playerCards.First(x => x.cardType == cardType));
             }
             amount--;
         }
+        CheckWinAndUpdateUI();
+    }
+
+    private void CheckWinAndUpdateUI()
+    {
+        Debug.Log(condition.CheckWin(playerCards));
+        rockAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Rock).Count();
+        waterAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Water).Count();
+        woodAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Wood).Count();
     }
 }

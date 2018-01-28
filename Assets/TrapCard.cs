@@ -11,11 +11,13 @@ public enum TrapCardType
 public class TrapCard : MonoBehaviour {
     TrapCardType trapCardType;
 
-    public TrapCard() {
+    public TrapCard GetNewTrapCard() {
         //TODO: fancy math for weighted cards?
         Array values = Enum.GetValues(typeof(TrapCardType));
         System.Random random = new System.Random();
         trapCardType = (TrapCardType)values.GetValue(random.Next(values.Length));
+
+        return (TrapCard)this.MemberwiseClone();
     }
 
     public void UseCard(Player usingPlayer = null, Player targetPlayer = null)
@@ -30,5 +32,7 @@ public class TrapCard : MonoBehaviour {
                 Debug.LogError("Danny you are dumb");
                 break;
         }
+
+        Destroy(this.gameObject);
     }
 }
