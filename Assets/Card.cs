@@ -12,6 +12,7 @@ public enum CardType {
     Rock
 }
 
+[System.Serializable]
 public class Card {
     public CardType cardType;
     public string cardName;

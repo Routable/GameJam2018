@@ -30,9 +30,9 @@ public class WinCondition : MonoBehaviour {
         return false;
     }
 
-    private bool CheckEnoughCardsOfType(CardType cardType, List<Card> cards)
+    public bool CheckEnoughCardsOfType(CardType cardType, List<Card> cards, int extra = 0)
     {
-        if (cards.Where(x => x.cardType == cardType).Count() >= neededCards.Where(x => x == cardType).Count())
+        if (cards.Where(x => x.cardType == cardType).Count() >= neededCards.Where(x => x == cardType).Count() + extra)
         {
             return true;
         }
