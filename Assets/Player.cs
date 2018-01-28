@@ -5,50 +5,39 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class Player : NetworkBehaviour {
+public class Player : MonoBehaviour {
     public List<Card> playerCards = new List<Card>();
     public List<TrapCard> trapCards;
-    public List<Player> otherPlayers;
+    public Player ai;
     public WinCondition condition;
     public DiscardPile discardPile;
     public int amountOfCardsPerTrapCard;
     public bool isTurn;
+
+    public bool isAi;
 
     private bool playPhase;
     public Text rockAmount;
     public Text waterAmount;
     public Text woodAmount;
 
+    public Text aiText;
+
     public GameObject trapCardPrefab;
     public Transform trapCardParent;
 
-    private void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            CmdTellServerToDoStuff();
-            //StartPlayerTurn();
+            if (!isAi)
+                StartTurn();
         }
     }
 
-    [Command]
-    public void CmdTellServerToDoStuff()
+    public void StartTurn()
     {
-        RpcTestClient();
-    }
-
-    [ClientRpc]
-    public void RpcTestClient()
-    {
-        if (isLocalPlayer)
-        {
-            amountOfCardsPerTrapCard++;
-        }
-    }
-
-    //start of turn
-    public void StartPlayerTurn()
-    {
+        isTurn = true;
         DrawCard(2);
         playPhase = true;
     }
@@ -68,10 +57,24 @@ public class Player : NetworkBehaviour {
     //ending turn
     public void EndTurn()
     {
-        if (playPhase)
+        if (!isAi)
         {
-            playPhase = false;
-            isTurn = false;
+            if (playPhase)
+            {
+                playPhase = false;
+                isTurn = false;
+                StartAiTurn();
+            }
+        }
+        else
+        {
+            if (playPhase)
+            {
+                playPhase = false;
+                isTurn = false;
+                //this is actually the player
+                ai.StartTurn();
+            }
         }
     }
 
@@ -129,9 +132,56 @@ public class Player : NetworkBehaviour {
 
     private void CheckWinAndUpdateUI()
     {
-        Debug.Log(condition.CheckWin(playerCards));
-        rockAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Rock).Count();
-        waterAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Water).Count();
-        woodAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Wood).Count();
+        if (!isAi)
+        {
+            Debug.Log("THIS IS THE PLAYER");
+            Debug.Log(condition.CheckWin(playerCards));
+            rockAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Rock).Count();
+            waterAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Water).Count();
+            woodAmount.text = " x " + playerCards.Where(x => x.cardType == CardType.Wood).Count();
+        }
+        //this is run from AI, this is why we dont code stupidly like this
+        else
+        {
+            Debug.Log("THIS IS THE AI");
+            Debug.Log(condition.CheckWin(playerCards));
+            aiText.text = "I has " + playerCards.Count() + " cards";
+        }
+    }
+
+    public void StartAiTurn()
+    {
+        ai.StartTurn();
+
+
+        //AI checks for extra cards and buys trap cards
+        GetEnum ge = new GetEnum();
+        ge.state = CardType.Wood;
+        if (ai.condition.CheckEnoughCardsOfType(CardType.Wood, ai.playerCards, ai.amountOfCardsPerTrapCard))
+            TryTradeCardsForTrapCard(ge);
+
+        ge.state = CardType.Water;
+        if (ai.condition.CheckEnoughCardsOfType(CardType.Water, ai.playerCards, ai.amountOfCardsPerTrapCard))
+            TryTradeCardsForTrapCard(ge);
+
+        ge.state = CardType.Rock;
+        if (ai.condition.CheckEnoughCardsOfType(CardType.Rock, ai.playerCards, ai.amountOfCardsPerTrapCard))
+            TryTradeCardsForTrapCard(ge);
+
+
+        //Make AI use random trap cards
+        while (ai.trapCards.Count() > 0)
+        {
+            if (Random.Range(0, 3) > 1)
+            {
+                ai.trapCards[Random.Range(0, ai.trapCards.Count)].UseCard();
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        ai.EndTurn();
     }
 }
