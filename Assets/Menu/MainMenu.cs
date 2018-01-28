@@ -11,7 +11,6 @@ public class MainMenu : MonoBehaviour {
 
     public void PlayGame()
     {
-        //SceneManager.LoadScene("LobbyScene"); 
         SceneManager.LoadScene(1);
     }
 
@@ -30,4 +29,15 @@ public class MainMenu : MonoBehaviour {
     {
         source.PlayOneShot(click);
     }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void HowToPlay()
+    {
+        SceneManager.LoadScene(2);  
+    }
+
 }
