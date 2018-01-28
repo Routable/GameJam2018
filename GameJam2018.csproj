@@ -304,7 +304,9 @@
     <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerList.cs" />
     <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyTopPanel.cs" />
     <Compile Include="Assets\Menu\BackToMain.cs" />
+    <Compile Include="Assets\Menu\BirdMove.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
+    <Compile Include="Assets\Menu\WhaleMove.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\NetworkAsteroid.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\NetworkGameManager.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\NetworkLobbyHook.cs" />
