@@ -318,9 +318,11 @@
     <Compile Include="Assets\Scripts\GameHandler.cs" />
     <Compile Include="Assets\Scripts\GameServerManager.cs" />
     <Compile Include="Assets\Scripts\GetEnum.cs" />
+    <Compile Include="Assets\Scripts\HelpfulExtensions.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\TrapCard.cs" />
+    <Compile Include="Assets\Scripts\TrapCardDb.cs" />
     <Compile Include="Assets\Scripts\WinCondition.cs" />
     <Compile Include="Assets\Scripts\WinConditionDb.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />

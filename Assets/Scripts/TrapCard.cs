@@ -2,23 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TrapCardType
-{
-    AddThreeCards,
-    StealEnemyResource
-}
-
+[System.Serializable]
 public class TrapCard : MonoBehaviour {
-    TrapCardType trapCardType;
-    public Player player;
-    public Enemy enemy;
+    public TrapCardType trapCardType;
+    public string trapCardText;
+    private Player player;
+    private Enemy enemy;
 
-    public TrapCard GetNewTrapCard(bool player = false) {
-        //TODO: fancy math for weighted cards?
-
-        int randType = Random.Range(0, TrapCardType.GetValues(typeof(TrapCardType)).Length);
-        trapCardType = (TrapCardType)randType;
+    public TrapCard GetCopy()
+    {
         return (TrapCard)this.MemberwiseClone();
+    }
+
+    public void SetValues(TrapCard tc)
+    {
+        trapCardText = tc.trapCardText;
+        trapCardType = tc.trapCardType;
     }
 
     private void Awake()
@@ -44,8 +43,10 @@ public class TrapCard : MonoBehaviour {
 
         switch (trapCardType)
         {
-            case TrapCardType.AddThreeCards:
-                user.DrawCard(3);
+            case TrapCardType.Add2Cards:
+                user.DrawCard(2);
+                player.CheckWin();
+                enemy.CheckWin();
                 break;
 
             case TrapCardType.StealEnemyResource:
@@ -59,11 +60,46 @@ public class TrapCard : MonoBehaviour {
                 }
                 break;
 
+            case TrapCardType.Discard5Draw5:
+                int _count = user.playerCards.Count;
+                if (_count < 5)
+                {
+                    user.playerCards.Clear();
+                    user.DrawCard(_count);
+                }
+                else
+                {
+                    user.playerCards.Shuffle();
+                    user.playerCards.RemoveRange(0, 5);
+                    user.DrawCard(5);
+                }
+                player.CheckWin();
+                enemy.CheckWin();                
+                break;
+
+            case TrapCardType.Swap3:
+                int _min = user.playerCards.Count < target.playerCards.Count ? user.playerCards.Count : target.playerCards.Count;
+                int _amount = Mathf.Clamp(_min, 0, 3);
+
+                user.playerCards.Shuffle();
+                List<Card> _cards = user.playerCards.GetRange(0, _amount);
+                user.playerCards.RemoveRange(0, _amount);
+                target.playerCards.Shuffle();
+                List<Card> _cards1 = target.playerCards.GetRange(0, _amount);
+                user.playerCards.AddRange(_cards1);
+                target.playerCards.RemoveRange(0, _amount);
+                target.playerCards.AddRange(_cards);
+
+                player.CheckWin();
+                enemy.CheckWin();                
+                break;
+
             default:
                 Debug.LogError("Danny you are dumb");
                 break;
         }
 
-        Destroy(this.gameObject);
+        if (gameObject != null)
+            Destroy(gameObject);
     }
 }

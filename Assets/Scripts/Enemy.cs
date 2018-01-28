@@ -14,8 +14,19 @@ public class Enemy : PlayerBase
 
     public override void StartTurn()
     {
+        StartCoroutine(Wait());
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.7f);
+        DoAiThings();
+        EndTurn();
+    }
+
+    public void DoAiThings()
+    {
         DrawCard(2);
-        playPhase = true;
 
         //AI checks for extra cards and buys trap cards
         ge.SetState(CardType.Wood);
@@ -43,18 +54,17 @@ public class Enemy : PlayerBase
                 break;
             }
         }
-
-        EndTurn();
     }
 
     //during turn
     public override void TryTradeCardsForTrapCard(GetEnum g)
     {
-        if (playPhase && HasEnoughCards(g.state, amountOfCardsPerTrapCard))
+        if (HasEnoughCards(g.state, amountOfCardsPerTrapCard))
         {
             RemoveCards(amountOfCardsPerTrapCard, g.state);
             GameObject tc = Instantiate(enemyTrapCardPrefab, Vector3.zero, Quaternion.identity);
-            trapCards.Add(tc.GetComponent<TrapCard>().GetNewTrapCard());
+            tc.GetComponent<TrapCard>().SetValues(tcdb.GetTrapCardValues());
+            trapCards.Add(tc.GetComponent<TrapCard>());
         }
     }
 
@@ -63,9 +73,12 @@ public class Enemy : PlayerBase
         win = condition.CheckWin(playerCards);
         if (win)
         {
+            player.playing = false;
             gh.HandleWin(isPlayer);
         }
 
-        aiText.text = "I has " + playerCards.Count() + " cards";
+        int number = condition.CheckWinPercent(playerCards);
+
+        aiText.text = "The AI has " + playerCards.Count() + " resources.\nThey have collected " + number + " resources\nneeded to get off the island.";
     }
 }

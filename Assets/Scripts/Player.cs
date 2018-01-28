@@ -17,29 +17,30 @@ public class Player : PlayerBase {
     public GameObject trapCardPrefab;
     public Transform trapCardParent;
 
+    public bool playing;
+
     public override void SetupGame()
     {
         base.SetupGame();
         drawCardText.text = "DRAW CARDS";
         winCondition.text = "Collect These:\nWood x " + condition.neededCards.Where(x => x == CardType.Wood).Count() + "\nWater x " + condition.neededCards.Where(x => x == CardType.Water).Count() + "\nRock x " + condition.neededCards.Where(x => x == CardType.Rock).Count();
-
     }
 
     public override void StartTurn()
     {
-        base.StartTurn();
         drawCardText.text = "DRAW CARDS";
+        playing = true;
     }
     public void TappedStartEndButton(Text text)
     {
-        if (playPhase)
+        if (playing)
         {
             if (text.text == "DRAW CARDS")
             {
                 DrawCard(amountOfCardsPerTrapCard);
                 text.text = "END TURN";
             }
-            else if (text.text == "END TURN")
+            else
             {
                 text.text = "WAITING FOR AI";
                 EndTurn();
@@ -50,13 +51,21 @@ public class Player : PlayerBase {
     //during turn
     public override void TryTradeCardsForTrapCard(GetEnum g)
     {
-        if (playPhase && HasEnoughCards(g.state, amountOfCardsPerTrapCard))
+        if (playing && HasEnoughCards(g.state, amountOfCardsPerTrapCard))
         {
             RemoveCards(amountOfCardsPerTrapCard, g.state);
             GameObject tc = Instantiate(trapCardPrefab, Vector3.zero, Quaternion.identity);
             tc.transform.SetParent(trapCardParent);
-            trapCards.Add(tc.GetComponent<TrapCard>().GetNewTrapCard(true));
+            tc.GetComponent<TrapCard>().SetValues(tcdb.GetTrapCardValues());
+            tc.transform.GetChild(0).GetComponent<Text>().text = tc.GetComponent<TrapCard>().trapCardText;
+            trapCards.Add(tc.GetComponent<TrapCard>());
         }
+    }
+
+    public override void EndTurn()
+    {
+        playing = false;
+        base.EndTurn();
     }
 
     public override void CheckWin()
@@ -64,6 +73,7 @@ public class Player : PlayerBase {
         win = condition.CheckWin(playerCards);
         if (win)
         {
+            playing = false;
             gh.HandleWin(isPlayer);
         }
 

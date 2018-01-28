@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 
 public class PlayerBase : MonoBehaviour
 {
-    public List<Card> playerCards = new List<Card>();
+    public List<Card> playerCards;
     public List<TrapCard> trapCards;
     public WinCondition condition;
     public int amountOfCardsPerTrapCard;
@@ -15,17 +15,29 @@ public class PlayerBase : MonoBehaviour
     public bool win;
     public bool isPlayer;
 
+    public TrapCardDb tcdb;
     public WinConditionDb wcdb;
     public GameHandler gh;
 
     public virtual void SetupGame()
     {
         condition = wcdb.GetNewWinCondition();
+        playerCards = new List<Card>();
+        trapCards = new List<TrapCard>();
+        CheckWin();
     }
 
+    private void Update()
+    {
+        if (playPhase)
+        {
+            playPhase = false;
+            StartTurn();
+        }
+    }
     public virtual void StartTurn()
     {
-        playPhase = true;
+
     }
 
     //during turn
@@ -41,12 +53,8 @@ public class PlayerBase : MonoBehaviour
     }
 
     //ending turn
-    public void EndTurn()
+    public virtual void EndTurn()
     {
-        if (playPhase)
-        {
-            playPhase = false;
-        }
         gh.PlayerTurnEnded(isPlayer);
     }
 
