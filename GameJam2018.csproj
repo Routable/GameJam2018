@@ -253,6 +253,9 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -288,14 +291,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BasePlayer.cs" />
-    <Compile Include="Assets\btnFX.cs" />
-    <Compile Include="Assets\Card.cs" />
-    <Compile Include="Assets\CurrentPlayer.cs" />
-    <Compile Include="Assets\DiscardPile.cs" />
-    <Compile Include="Assets\Enemy.cs" />
-    <Compile Include="Assets\GameServerManager.cs" />
-    <Compile Include="Assets\GetEnum.cs" />
     <Compile Include="Assets\Lobby\Scripts\DraggablePanel.cs" />
     <Compile Include="Assets\Lobby\Scripts\EventSystemChecker.cs" />
     <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyCountdownPanel.cs" />
@@ -312,12 +307,26 @@
     <Compile Include="Assets\Menu\BirdMove.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
     <Compile Include="Assets\Menu\WhaleMove.cs" />
-    <Compile Include="Assets\Player.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\NetworkAsteroid.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\NetworkGameManager.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\NetworkLobbyHook.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\NetworkSpaceship.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\NetworkSpaceshipBullet.cs" />
+    <Compile Include="Assets\Scripts\BasePlayer.cs" />
+    <Compile Include="Assets\Scripts\btnFX.cs" />
+    <Compile Include="Assets\Scripts\Card.cs" />
+    <Compile Include="Assets\Scripts\DiscardPile.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\GameHandler.cs" />
+    <Compile Include="Assets\Scripts\GameServerManager.cs" />
+    <Compile Include="Assets\Scripts\GetEnum.cs" />
+    <Compile Include="Assets\Scripts\HelpfulExtensions.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\PlayerBase.cs" />
+    <Compile Include="Assets\Scripts\TrapCard.cs" />
+    <Compile Include="Assets\Scripts\TrapCardDb.cs" />
+    <Compile Include="Assets\Scripts\WinCondition.cs" />
+    <Compile Include="Assets\Scripts\WinConditionDb.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -350,8 +359,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
-    <Compile Include="Assets\TrapCard.cs" />
-    <Compile Include="Assets\WinCondition.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Documentation\JazzCreateAltKeys_BubbleFont.txt" />
