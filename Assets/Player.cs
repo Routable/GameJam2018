@@ -33,10 +33,8 @@ public class Player : NetworkBehaviour {
 
     public void TellServerToDoStuff()
     {
-        if (isServer)
-        {
+        if (isLocalPlayer)
             amountOfCardsPerTrapCard++;
-        }
     }
 
     //start of turn
