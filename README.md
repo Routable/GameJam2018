@@ -15,3 +15,5 @@ Tools And Technologies: Unity (any product)
 Technology Notes: Photoshop CS6
 
 Credits: Danny C., Natasha L., Steven B, Paige T., Clay G., Kaylan H.
+
+All images, music and work belong to their respected copyright owners. This project is for educational (learning) purposes only, and not for commercial redistribution or sale. 
