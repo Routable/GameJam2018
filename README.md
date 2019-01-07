@@ -17,3 +17,8 @@ Technology Notes: Photoshop CS6
 Credits: Danny C., Natasha L., Steven B, Paige T., Clay G., Kaylan H.
 
 All images, music and work belong to their respected copyright owners. This project is for educational (learning) purposes only, and not for commercial redistribution or sale. 
+
+![alt text](https://ggj.s3.amazonaws.com/styles/feature_image__wide/games/screenshots/islandescape-1_0.png?itok=QhD7vC4R&timestamp=1517182268)
+![alt text](https://ggj.s3.amazonaws.com/styles/feature_image__wide/games/screenshots/islandescape-2_0.png?itok=n9Ap4Afj&timestamp=1517182268)
+![alt text](https://ggj.s3.amazonaws.com/styles/feature_image__wide/games/screenshots/islandescape-3.png?itok=Li6n-GJL&timestamp=1517182268)
+![alt text](https://ggj.s3.amazonaws.com/styles/game_sidebar__wide/game/featured_image/islandescape.png?itok=gRTCNCcU&timestamp=1517185259)
